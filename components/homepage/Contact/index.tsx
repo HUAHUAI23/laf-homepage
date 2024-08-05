@@ -1,12 +1,11 @@
-"use client";
 import React from "react";
 
-import { useTranslation } from "@/app/i18n/client";
+import { useTranslation } from "@/app/i18n";
 
 type Props = { lng: string };
 
-const Contact = (props: Props) => {
-  const { t } = useTranslation(props.lng);
+const Contact = async (props: Props): Promise<JSX.Element> => {
+  const { t } = await useTranslation(props.lng, "common");
   return (
     <div className="py-12 pb-2 text-center lg:pb-24 lg:pt-0">
       <a

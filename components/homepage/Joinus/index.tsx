@@ -1,14 +1,13 @@
-"use client";
 import React from "react";
 
-import { useTranslation } from "@/app/i18n/client";
+import { useTranslation } from "@/app/i18n";
 
 import Circle from "../Circle";
 
 type Props = { lng: string };
 
-const JoinUs = (props: Props) => {
-  const { t } = useTranslation(props.lng);
+const JoinUs = async (props: Props): Promise<JSX.Element> => {
+  const { t } = await useTranslation(props.lng, "common");
   return (
     <div className="mt-32">
       <div className="relative mb-[120px] hidden h-auto w-full rounded-3xl  bg-[url('/homepage/joinbg.svg')] bg-cover bg-repeat lg:flex lg:flex-row">
@@ -45,7 +44,7 @@ const JoinUs = (props: Props) => {
             alt="logo"
           />
           <div className="absolute right-72 top-48">
-            <Circle />
+            <Circle lng={props.lng} />
           </div>
           <div className="absolute right-[450px] top-80 h-10 w-10 rounded-full bg-red-500 object-cover opacity-20"></div>
           <div className="absolute right-[600px] top-24 h-4 w-4 rounded-full bg-green-600 object-cover opacity-20"></div>

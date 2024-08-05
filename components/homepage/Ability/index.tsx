@@ -1,19 +1,15 @@
-"use client";
 import React from "react";
-import { useColorMode } from "@chakra-ui/react";
 
-import { useTranslation } from "@/app/i18n/client";
-import { COLOR_MODE } from "@/constants";
+import { useTranslation } from "@/app/i18n";
 
 type Props = {
   lng: string;
 };
 
-const Ability = (props: Props) => {
-  const { t } = useTranslation(props.lng);
+const Ability = async (props: Props): Promise<JSX.Element> => {
+  const { t } = await useTranslation(props.lng, "common");
 
-  const { colorMode } = useColorMode();
-  const darkMode = colorMode === COLOR_MODE.dark;
+  const darkMode = false;
 
   return (
     <div className="h-auto">

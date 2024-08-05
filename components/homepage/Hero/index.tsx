@@ -1,15 +1,16 @@
 "use client";
+
 import React, { useState } from "react";
 import Link from "next/link";
 
 import { useTranslation } from "@/app/i18n/client";
-import { Routes } from "@/constants";
+import { site_url } from "@/constants";
 
 import Video from "../Video";
 
 type Props = { lng: string };
 
-const Hero = (props: Props) => {
+const Hero = (props: Props): JSX.Element => {
   const [play, setPlay] = useState(false);
   const { t } = useTranslation(props.lng);
 
@@ -25,7 +26,7 @@ const Hero = (props: Props) => {
 
         <div className="z-10 mt-8 lg:mt-6">
           <Link
-            href="https://gzg.sealos.run/?openapp=system-sealaf"
+            href={site_url.sealaf}
             className="bg-primary z-40 flex h-[48px] w-[144px] items-center justify-center rounded-md text-[16px] text-white hover:active:bg-[#00AFA3]"
           >
             {t(`HomePage.HomePage.start`)}

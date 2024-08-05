@@ -5,7 +5,8 @@ import { useTranslation } from "@/app/i18n";
 import { fallbackLng, languages } from "@/app/i18n/settings";
 import { ChakraProviders } from "@/providers/chakra/providers";
 
-import "./global.css";
+// import darkTheme from "@/ui/chakraThemeDark";
+import "./App.css";
 
 export async function generateStaticParams(): Promise<{ lng: string }[]> {
   return languages.map((lng) => ({ lng }));
@@ -20,7 +21,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   if (languages.indexOf(lng) < 0) lng = fallbackLng;
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { t } = await useTranslation(lng);
+  const { t } = await useTranslation(lng, "common");
   return {
     title: t("title"),
     description:
@@ -28,7 +29,7 @@ export async function generateMetadata({
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params: { lng },
 }: {
@@ -36,7 +37,7 @@ export default function RootLayout({
   params: {
     lng: string;
   };
-}): JSX.Element {
+}): Promise<JSX.Element> {
   return (
     <html lang={lng} dir={dir(lng)}>
       <head />

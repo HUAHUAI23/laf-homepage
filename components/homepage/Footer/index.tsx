@@ -1,18 +1,22 @@
-"use client";
-import { useColorMode } from "@chakra-ui/react";
+import { link } from "fs";
 
-import { useTranslation } from "@/app/i18n/client";
+import { useTranslation } from "@/app/i18n";
 import { DiscordIcon, ForumIcon, WechatIcon } from "@/components/CommonIcon";
-import { COLOR_MODE, site_url } from "@/constants";
+import { site_url } from "@/constants";
 
 import Status from "../Status";
 
 type Props = { lng: string };
-
-const Footer = (props: Props) => {
-  const { t } = useTranslation(props.lng);
-  const { colorMode } = useColorMode();
-  const darkMode = colorMode === COLOR_MODE.dark;
+const link_list = {
+  laf: site_url.sealaf,
+  forum: "https://forum.laf.run",
+  about: "https://sealos.run/company",
+  source: "https://github.com/labring/laf",
+  doc: "https://doc.laf.run/zh/",
+};
+const Footer = async (props: Props): Promise<JSX.Element> => {
+  const { t } = await useTranslation(props.lng, "common");
+  const darkMode = false;
 
   return (
     <>
@@ -59,7 +63,7 @@ const Footer = (props: Props) => {
                   }
                 >
                   <li>
-                    <a href={String(t(`HomePage.LafLink`))}>{t("HomePage.Footer.item1_1")}</a>
+                    <a href={link_list.laf}>{t("HomePage.Footer.item1_1")}</a>
                   </li>
                   <li>
                     <a href={`${site_url.laf_github}/releases`} target="_blank" rel="noreferrer">
@@ -105,7 +109,7 @@ const Footer = (props: Props) => {
                     </a>
                   </li>
                   <li>
-                    <a href="https://api.laf.dev/" target="_blank" rel="noreferrer">
+                    <a href="https://api.laf.run/" target="_blank" rel="noreferrer">
                       {t("HomePage.Footer.item2_2")}
                     </a>
                   </li>
@@ -115,7 +119,7 @@ const Footer = (props: Props) => {
                     </a>
                   </li>
                   <li>
-                    <a href={""} target="_blank" rel="noreferrer">
+                    <a href={link_list.doc} target="_blank" rel="noreferrer">
                       {t("HomePage.Footer.item2_5")}
                     </a>
                   </li>
@@ -141,13 +145,13 @@ const Footer = (props: Props) => {
                   </li>
 
                   <li>
-                    <a href={""} target="_blank" rel="noreferrer">
+                    <a href={link_list.forum} target="_blank" rel="noreferrer">
                       {t("HomePage.Footer.item3_2")}
                     </a>
                   </li>
 
                   <li>
-                    <a href={""} target="_blank" rel="noreferrer">
+                    <a href={link_list.about} target="_blank" rel="noreferrer">
                       {t("HomePage.Footer.item3_3")}
                     </a>
                   </li>
@@ -169,7 +173,7 @@ const Footer = (props: Props) => {
               />
             </div>
             <div className="flex justify-evenly ">
-              <Status />
+              <Status lng={props.lng} />
               <a href={""} target="_blank" rel="noreferrer" className="mr-1">
                 <WechatIcon fontSize={22} color={darkMode ? "#F6F8F9" : "#3C455D"} />
               </a>
@@ -216,7 +220,7 @@ const Footer = (props: Props) => {
               </div>
               <ul className="mb-4 leading-8">
                 <li>
-                  <a href={String(t(`HomePage.LafLink`))}>{t("HomePage.Footer.item1_1")}</a>
+                  <a href={link_list.laf}>{t("HomePage.Footer.item1_1")}</a>
                 </li>
                 <li>
                   <a href={`${site_url.laf_github}/releases`} target="_blank" rel="noreferrer">
@@ -252,13 +256,13 @@ const Footer = (props: Props) => {
                   </li>
 
                   <li>
-                    <a href={""} target="_blank" rel="noreferrer">
+                    <a href={link_list.forum} target="_blank" rel="noreferrer">
                       {t("HomePage.Footer.item3_2")}
                     </a>
                   </li>
 
                   <li>
-                    <a href={""} target="_blank" rel="noreferrer">
+                    <a href={link_list.about} target="_blank" rel="noreferrer">
                       {t("HomePage.Footer.item3_3")}
                     </a>
                   </li>
@@ -283,17 +287,17 @@ const Footer = (props: Props) => {
                   </a>
                 </li>
                 <li>
-                  <a href="https://api.laf.dev/" target="_blank" rel="noreferrer">
+                  <a href="https://api.laf.run/" target="_blank" rel="noreferrer">
                     {t("HomePage.Footer.item2_2")}
                   </a>
                 </li>
                 <li>
-                  <a href={""} target="_blank" rel="noreferrer">
+                  <a href={link_list.source} target="_blank" rel="noreferrer">
                     {t("HomePage.Footer.item2_4")}
                   </a>
                 </li>
                 <li>
-                  <a href={""} target="_blank" rel="noreferrer">
+                  <a href={link_list.doc} target="_blank" rel="noreferrer">
                     {t("HomePage.Footer.item2_5")}
                   </a>
                 </li>
@@ -323,7 +327,7 @@ const Footer = (props: Props) => {
             </a>
           </div>
           <div>
-            <Status />
+            <Status lng={props.lng} />
           </div>
         </div>
       </div>

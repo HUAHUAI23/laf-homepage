@@ -1,7 +1,6 @@
-"use client";
 import React from "react";
 
-import { useTranslation } from "@/app/i18n/client";
+import { useTranslation } from "@/app/i18n";
 
 import styles from "./status.module.scss";
 
@@ -9,8 +8,8 @@ type Props = {
   lng: string;
 };
 
-export default function Status(props: Props) {
-  const { t } = useTranslation(props.lng);
+export default async function Status(props: Props): Promise<JSX.Element> {
+  const { t } = await useTranslation(props.lng, "common");
   return (
     <a
       target="_blank"

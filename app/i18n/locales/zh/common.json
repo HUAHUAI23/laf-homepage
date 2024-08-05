@@ -103,5 +103,7 @@
       "item3_3": "关于我们"
     }
   },
-  "title": "sealaf 云开发"
+  "title": "sealaf 云开发",
+  "i18n tip": "En",
+  "ServerStatus": "服务状态"
 }

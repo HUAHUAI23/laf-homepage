@@ -1,18 +1,20 @@
 "use client";
 import { useEffect, useState } from "react";
-// import { Link } from "react-router-dom"
 import { useColorMode } from "@chakra-ui/react";
 import axios from "axios";
-import clsx from "clsx";
+import { clsx } from "clsx";
+import Link from "next/link";
 
 import { useTranslation } from "@/app/i18n/client";
 import { GithubIcon, MenuIcon } from "@/components/CommonIcon";
-import { COLOR_MODE, Routes, site_url } from "@/constants";
+import { COLOR_MODE, site_url } from "@/constants";
+
+import { LanguageSwitcher } from "../../LanguageSwitcher";
 
 // import LanguageSwitch from "../../components/LanguageSwitch"
 // import useSiteSettingStore from "../siteSetting"
 type Props = { lng: string };
-const Navbar = (props: Props) => {
+const Navbar = (props: Props): JSX.Element => {
   const [showBanner, setShowBanner] = useState(false);
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [stars, setStars] = useState<string | null>(null);
@@ -21,7 +23,7 @@ const Navbar = (props: Props) => {
   const navList = [
     {
       text: t("HomePage.NavBar.docs"),
-      ref: "",
+      ref: "https://doc.laf.run/zh/",
     },
     {
       text: t("HomePage.NavBar.forum"),
@@ -62,13 +64,12 @@ const Navbar = (props: Props) => {
         const matchedText = match[1];
         setStars(`${matchedText}K`);
       } else {
-        console.log("No match found");
+        console.error("No match found");
       }
     })();
 
     return () => {};
   }, []);
-
   return (
     <div className="flex flex-col items-center justify-center">
       <div className={showBanner ? "fixed top-0  z-40 block" : "hidden"}>
@@ -141,17 +142,24 @@ const Navbar = (props: Props) => {
                 {stars}
               </a>
             ) : null}
-            {/* <div className="hover:opacity-75">
-                            <LanguageSwitch className="text-xl !font-normal" size="24px" color="#1A202C" />
-                        </div>
-                        <div>
-                            <Link
-                                to={Routes.dashboard}
-                                className="bg-primary text-sm rounded px-5 py-2 text-white"
-                            >
-                                {t("HomePage.NavBar.start")}
-                            </Link>
-                        </div> */}
+            <div className="hover:opacity-75">
+              <LanguageSwitcher
+                className="text-xl !font-normal"
+                size="24px"
+                color="#1A202C"
+                lng={props.lng}
+              />
+            </div>
+            <div>
+              <Link
+                href={site_url.sealaf}
+                className="bg-primary text-sm rounded px-5 py-2 text-white hover:bg-primary-dark transition duration-300 ease-in-out"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t("HomePage.NavBar.start")}
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -243,7 +251,7 @@ const Navbar = (props: Props) => {
                   darkMode ? "flex px-4 py-2 hover:bg-gray-900" : "flex px-4 py-2 hover:bg-gray-100"
                 }
               >
-                {/* <LanguageSwitch className="text-[24px]" /> */}
+                <LanguageSwitcher className="text-[24px]" lng={props.lng} />
               </div>
             </div>
           </ul>

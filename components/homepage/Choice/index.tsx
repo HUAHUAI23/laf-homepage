@@ -1,19 +1,15 @@
-"use client";
 import React from "react";
-import { useColorMode } from "@chakra-ui/react";
 
-import { useTranslation } from "@/app/i18n/client";
-import { COLOR_MODE } from "@/constants";
+import { useTranslation } from "@/app/i18n";
 
 type Props = { lng: string };
 
-const Choice = (props: Props) => {
-  const { t } = useTranslation(props.lng);
-  const { colorMode } = useColorMode();
-  const darkMode = colorMode === COLOR_MODE.dark;
+const Choice = async (props: Props): Promise<JSX.Element> => {
+  const { t } = await useTranslation(props.lng, "common");
+  const darkMode = false;
 
   return (
-    <div className="mt-[120px]">
+    <div className="mt-[120px] ">
       <h2 className="mb-[60px]"> {t(`HomePage.Choice.title`)}</h2>
       <div className="mx-[16px] space-y-4 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-6 lg:space-y-0">
         <div

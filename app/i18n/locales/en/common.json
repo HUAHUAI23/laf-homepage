@@ -103,5 +103,7 @@
       "item3_3": "About us"
     }
   },
-  "title": "sealaf"
+  "title": "sealaf",
+  "i18n tip": "中",
+  "ServerStatus": "STATUS"
 }

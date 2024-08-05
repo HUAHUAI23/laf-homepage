@@ -33,6 +33,7 @@ export async function useTranslation<
     Array.isArray(ns) ? ns : [ns as string].filter(Boolean)
   )
   return {
+    // ns default is translation.json
     t: i18nextInstance.getFixedT(lng, ns, options.keyPrefix),
     i18n: i18nextInstance,
   }

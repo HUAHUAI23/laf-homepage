@@ -1,3 +1,5 @@
+// import { headers } from "next/headers";
+
 import Ability from "@/components/homepage/Ability";
 import Choice from "@/components/homepage/Choice";
 import Contact from "@/components/homepage/Contact";
@@ -19,6 +21,9 @@ export default async function Page({
 }): Promise<JSX.Element> {
   // if (languages.indexOf(lng) < 0) lng = fallbackLng;
   // const { t } = await useTranslation(lng, "common");
+  // const headersList = headers();
+  // const acceptLanguage = headersList.get("Accept-Language");
+  // console.log("acceptLanguage", acceptLanguage);
 
   return (
     <>

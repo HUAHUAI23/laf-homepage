@@ -50,6 +50,7 @@ export function useTranslation<
   const [cookies, setCookie] = useCookies([cookieName])
   const ret = useTranslationOrg(ns, options)
   const { i18n } = ret
+  // detect the language on client side
   if (runsOnServerSide && lng && i18n.resolvedLanguage !== lng) {
     i18n.changeLanguage(lng)
   } else {

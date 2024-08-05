@@ -18,6 +18,8 @@ const Navbar = (props: Props): JSX.Element => {
   const [showBanner, setShowBanner] = useState(false);
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [stars, setStars] = useState<string | null>(null);
+
+  const [sealafUrl, setSealafUrl] = useState(site_url.sealaf);
   const { t } = useTranslation(props.lng);
   // const { siteSettings } = useSiteSettingStore()
   const navList = [
@@ -48,6 +50,14 @@ const Navbar = (props: Props): JSX.Element => {
     } else {
       //没有本地的删除时间，或者已经大于24h，显示banner
       setShowBanner(true);
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const bdVid = urlParams.get("bd_vid");
+    if (bdVid) {
+      const url = new URL(site_url.sealaf);
+      url.searchParams.append("bd_vid", bdVid);
+      setSealafUrl(url.toString());
     }
   }, []);
 
@@ -152,7 +162,7 @@ const Navbar = (props: Props): JSX.Element => {
             </div>
             <div>
               <Link
-                href={site_url.sealaf}
+                href={sealafUrl}
                 className="bg-primary text-sm rounded px-5 py-2 text-white hover:bg-primary-dark transition duration-300 ease-in-out"
                 target="_blank"
                 rel="noopener noreferrer"

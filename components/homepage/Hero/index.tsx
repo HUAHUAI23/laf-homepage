@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 import { useTranslation } from "@/app/i18n/client";
@@ -13,6 +13,18 @@ type Props = { lng: string };
 const Hero = (props: Props): JSX.Element => {
   const [play, setPlay] = useState(false);
   const { t } = useTranslation(props.lng);
+  const [sealafUrl, setSealafUrl] = useState(site_url.sealaf);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const bdVid = urlParams.get("bd_vid");
+    if (bdVid) {
+      const url = new URL(site_url.sealaf);
+      url.searchParams.append("bd_vid", bdVid);
+      setSealafUrl(url.toString());
+      sessionStorage.setItem("bd_vid", bdVid);
+    }
+  }, []);
 
   return (
     <>
@@ -26,7 +38,7 @@ const Hero = (props: Props): JSX.Element => {
 
         <div className="z-10 mt-8 lg:mt-6">
           <Link
-            href={site_url.sealaf}
+            href={sealafUrl}
             className="bg-primary z-40 flex h-[48px] w-[144px] items-center justify-center rounded-md text-[16px] text-white hover:active:bg-[#00AFA3]"
           >
             {t(`HomePage.HomePage.start`)}

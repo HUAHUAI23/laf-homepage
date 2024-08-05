@@ -26,12 +26,12 @@ export default async function Page({
         {/* <h1>{t("HomePage.Join.subtitle")}</h1> */}
         <div style={{ fontSize: "16px" }} className="homepage">
           <Navbar lng={lng} />
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center mb-12">
             <div className="flex flex-col lg:mx-[48px] lg:max-w-[1200px]">
               <Hero lng={lng} />
               <Ability lng={lng} />
               <Choice lng={lng} />
-              <JoinUs lng={lng} />
+              {/* <JoinUs lng={lng} /> */}
               {/* <Contact lng={lng} /> */}
             </div>
           </div>

@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { useTranslation } from "@/app/i18n";
 import { fallbackLng, languages } from "@/app/i18n/settings";
 import { ChakraProviders } from "@/providers/chakra/providers";
+import BaiduAnalytics from "@/scripts/BaiduAnalytics";
 
 // import darkTheme from "@/ui/chakraThemeDark";
 import "./App.css";
@@ -40,7 +41,9 @@ export default async function RootLayout({
 }): Promise<JSX.Element> {
   return (
     <html lang={lng} dir={dir(lng)}>
-      <head />
+      <head>
+        <BaiduAnalytics />
+      </head>
       <body>
         <ChakraProviders>{children}</ChakraProviders>
       </body>

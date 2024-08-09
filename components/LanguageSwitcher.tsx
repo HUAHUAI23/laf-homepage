@@ -51,20 +51,28 @@ export function LanguageSwitcher(props: {
 //   const { t } = useTranslation(props.lng);
 //   const { className, size = "20px", color = "#68686E" } = props;
 //   const pathname = usePathname();
-//   const newLang = props.lng === "en" ? "zh" : "en";
 
 //   const newPath = useCallback(() => {
-//     // 移除末尾的 .html（如果存在）
-//     const pathWithoutHtml = pathname.replace(/\.html$/, "");
-
-//     // 如果路径末尾是 /en 或 /zh，替换它
-//     if (pathWithoutHtml.endsWith("/en") || pathWithoutHtml.endsWith("/zh")) {
-//       return `${pathWithoutHtml.slice(0, -2)}${newLang}.html`;
+//     // 如果当前 pathname 是根目录
+//     if (pathname === "/") {
+//       return props.lng === "en" ? "/zh.html" : "/en.html";
 //     }
 
-//     // 如果路径不以语言代码结尾，直接添加新的语言代码
-//     return `${pathWithoutHtml}/${newLang}.html`;
-//   }, [pathname, newLang]);
+//     // 如果不是根目录，保持当前路径并只改变语言
+//     const currentLang = props.lng === "en" ? "/en" : "/zh";
+//     const newLang = props.lng === "en" ? "/zh" : "/en";
+
+//     // 移除路径末尾的 .html（如果存在）
+//     const pathWithoutHtml = pathname.replace(/\.html$/, "");
+
+//     // 如果路径末尾已经有语言代码，替换它
+//     if (pathWithoutHtml.endsWith(currentLang)) {
+//       return `${pathWithoutHtml.slice(0, -3)}${newLang}.html`;
+//     }
+
+//     // 如果路径末尾没有语言代码，添加新的语言代码
+//     return `${pathWithoutHtml}${newLang}.html`;
+//   }, [pathname, props.lng]);
 
 //   const darkMode = false;
 

@@ -2,6 +2,7 @@
 const nextConfig = {
   output: 'standalone',
   // trailingSlash: true, // 输出 index.html
+  // basePath: '/sealaf',
   // output: 'export',   // 输出静态站点
   eslint: {
     // 不完全忽略 ESLint，但在构建时只报告错误

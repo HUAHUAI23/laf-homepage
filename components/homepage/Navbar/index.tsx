@@ -54,11 +54,18 @@ const Navbar = (props: Props): JSX.Element => {
 
     const urlParams = new URLSearchParams(window.location.search);
     const bdVid = urlParams.get("bd_vid");
+    const kValue = urlParams.get("k");
+    const url = new URL(site_url.sealaf);
+
     if (bdVid) {
-      const url = new URL(site_url.sealaf);
       url.searchParams.append("bd_vid", bdVid);
-      setSealafUrl(url.toString());
     }
+
+    if (kValue) {
+      url.searchParams.append("k", kValue);
+    }
+
+    setSealafUrl(url.toString());
   }, []);
 
   useEffect(() => {

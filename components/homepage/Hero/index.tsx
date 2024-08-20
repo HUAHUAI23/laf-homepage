@@ -18,12 +18,18 @@ const Hero = (props: Props): JSX.Element => {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const bdVid = urlParams.get("bd_vid");
+    const kValue = urlParams.get("k");
+    const url = new URL(site_url.sealaf);
+
     if (bdVid) {
-      const url = new URL(site_url.sealaf);
       url.searchParams.append("bd_vid", bdVid);
-      setSealafUrl(url.toString());
       sessionStorage.setItem("bd_vid", bdVid);
     }
+    if (kValue) {
+      url.searchParams.append("k", kValue);
+      sessionStorage.setItem("k", kValue);
+    }
+    setSealafUrl(url.toString());
   }, []);
 
   return (
